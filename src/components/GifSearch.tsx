@@ -10,6 +10,12 @@ const GifSearch = () => {
     setquery(e.target.value);
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      searchGifs();
+    }
+  };
+
   const searchGifs = () => {
     if (query.trim() === "") {
       return;
@@ -22,6 +28,7 @@ const GifSearch = () => {
       <input
         type="text"
         onChange={handleSearchTextChange}
+        onKeyDown={handleKeyDown}
         value={query}
         placeholder="Search Gifs and Stickers"
         className="p-4 w-full rounded rounded-r-none  text-black text-2xl"

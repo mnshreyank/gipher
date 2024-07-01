@@ -22,6 +22,7 @@ const Header = () => {
   }, []);
 
   const handleMoreClick = () => {
+    // setshowCatergories(true);
     setshowCatergories((prev) => !prev);
   };
 
@@ -45,7 +46,11 @@ const Header = () => {
             );
           })}
 
-          <button onClick={handleMoreClick}>
+          <button
+            // onMouseOver={() => setshowCatergories(true)}
+            // onMouseLeave={() => setshowCatergories(false)}
+            onClick={handleMoreClick}
+          >
             <HiEllipsisVertical
               size={30}
               className={`py-1 hover:gradient border-b-4 hidden ${

@@ -21,6 +21,18 @@ const SingleGif = () => {
     setRelatedGif(related);
   };
 
+  const handleShareClick = () => {
+    const url = window.location.href;
+    navigator.clipboard
+      .writeText(url)
+      .then(() => {
+        alert("URL copied to clipboard!");
+      })
+      .catch((err) => {
+        console.error("Failed to copy: ", err);
+      });
+  };
+
   useEffect(() => {
     fetchGif();
   }, [slug]);
@@ -34,14 +46,17 @@ const SingleGif = () => {
             <Gif gif={gif} />
           </div>
           <div className="font-bold text-xl flex gap-4 flex-col cursor-pointer ">
-            <span className="inline-flex flex-row gap-2 items-center">
+            <span
+              className="inline-flex flex-row gap-2 items-center"
+              onClick={handleShareClick}
+            >
               <HiShare />
               Share
             </span>
-            <span className="inline-flex flex-row gap-2 items-center">
+            {/* <span className="inline-flex flex-row gap-2 items-center">
               <HiHeart />
               Favorites
-            </span>
+            </span> */}
           </div>
         </div>
         <div>
