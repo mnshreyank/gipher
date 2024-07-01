@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { GifState } from "../context/gifContext";
-import FilterGifs from "../components/FilterGifs";
 import Gif from "./Gif";
 
 const Categories: React.FC<{}> = () => {
@@ -11,6 +10,7 @@ const Categories: React.FC<{}> = () => {
   const { gf, filters } = GifState();
 
   const fetchResults = async () => {
+    if (!category) return;
     const { data } = await gf.gifs(category, category);
     setResults(data);
   };

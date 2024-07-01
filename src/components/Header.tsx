@@ -5,11 +5,10 @@ import { GifState } from "../context/gifContext";
 import GifSearch from "./GifSearch";
 
 const Header = () => {
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState<any[]>([]);
   const [showCatergories, setshowCatergories] = useState<Boolean>(false);
 
-  const { gf, gifs, filters, setFilters, setGifs, setFavorites, favorites } =
-    GifState();
+  const { gf, favorites } = GifState();
 
   const fetchGifCategories = async () => {
     const { data } = await gf.categories();

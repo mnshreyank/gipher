@@ -1,12 +1,17 @@
 import { GiphyFetch } from "@giphy/js-fetch-api";
-import { createContext, useContext, useState } from "react";
+import { ReactNode, createContext, useContext, useState } from "react";
 
-const GifCtx = createContext({});
+interface GifProviderProps {
+  children: ReactNode;
+}
 
-const GifProvider = ({ children }) => {
+type FilterProps = "gifs" | "stickers" | "text";
+
+const GifCtx = createContext<any>({});
+
+const GifProvider: React.FC<GifProviderProps> = ({ children }) => {
   const [gifs, setGifs] = useState([]);
-  const [filters, setFilters] = useState("gifs");
-  const [favorites, setFavorites] = useState([]);
+  const [filters, setFilters] = useState<FilterProps>("gifs");
 
   const gf = new GiphyFetch(import.meta.env.VITE_GIPHY_KEY);
 
@@ -16,10 +21,8 @@ const GifProvider = ({ children }) => {
         gf,
         gifs,
         filters,
-        favorites,
         setGifs,
         setFilters,
-        setFavorites,
       }}
     >
       {children}
@@ -28,7 +31,11 @@ const GifProvider = ({ children }) => {
 };
 
 export const GifState = () => {
-  return useContext(GifCtx);
+  const context = useContext(GifCtx);
+  if (!context) {
+    throw new Error("useGifContext must be used within a GifProvider");
+  }
+  return context;
 };
 
 export default GifProvider;

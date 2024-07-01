@@ -2,16 +2,19 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { GifState } from "../context/gifContext";
 import Gif from "./Gif";
-import { HiHeart, HiShare } from "react-icons/hi2";
+import { HiShare } from "react-icons/hi2";
 
 const SingleGif = () => {
-  const { type, slug } = useParams();
-  const [gif, setGif] = useState({});
-  const [relatedGif, setRelatedGif] = useState([]);
+  const { slug } = useParams();
+  const [gif, setGif] = useState<any>({});
+  const [relatedGif, setRelatedGif] = useState<any>([]);
   const { gf } = GifState();
 
   const fetchGif = async () => {
     const gifId = slug?.split("-");
+    if (!gifId) {
+      return;
+    }
     console.log(gifId[gifId?.length - 1]);
     const { data } = await gf.gif(gifId[gifId?.length - 1]);
     const { data: related } = await gf.related(gifId[gifId?.length - 1], {
@@ -63,7 +66,7 @@ const SingleGif = () => {
           <p className="my-4 text-2xl font-extrabold">Related Gifs</p>
           <div className="columns-2 md:columns-3 lg:columns-5">
             {relatedGif.length > 0 &&
-              relatedGif?.map((gif) => {
+              relatedGif?.map((gif: any) => {
                 return <Gif gif={gif} />;
               })}
           </div>

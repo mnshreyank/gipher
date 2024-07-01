@@ -3,7 +3,6 @@ import "./App.css";
 import Home from "./pages/Home";
 import Categories from "./pages/Categories";
 import Search from "./pages/Search";
-import Gif from "./pages/Gif";
 import Favorites from "./pages/Favorites";
 import AppLayout from "./layouts/AppLayout";
 import GifProvider from "./context/gifContext";

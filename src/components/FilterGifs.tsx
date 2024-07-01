@@ -1,4 +1,3 @@
-import React from "react";
 import { GifState } from "../context/gifContext";
 
 const FILTERS = [
@@ -25,7 +24,7 @@ const FilterGifs = () => {
 
   return (
     <div className="bg-gray-600 ml-auto rounded flex mt-4 text-center">
-      {FILTERS.map((f) => {
+      {FILTERS.map((f: any) => {
         return (
           <span
             className={`${

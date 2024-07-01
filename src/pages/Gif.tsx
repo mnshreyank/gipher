@@ -1,6 +1,7 @@
+import React from "react";
 import { Link } from "react-router-dom";
 
-const Gif = ({ gif, hover = true }) => {
+const Gif: React.FC<any> = ({ gif, hover = true }) => {
   return (
     <Link to={`/${gif?.type}s/${gif?.slug}`} key={gif?.id}>
       <div className="w-full aspect-video mb-2 relative  group">

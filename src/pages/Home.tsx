@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { GifState } from "../context/gifContext";
 import Gif from "./Gif";
 import FilterGifs from "../components/FilterGifs";
@@ -24,7 +24,7 @@ const Home = () => {
       <img src="/banner.gif" alt="banner" className="w-full rounded h-20" />
       <FilterGifs />
       <div className="columns-2 md:columns-3 lg:columns-4 gap-3 mt-4">
-        {gifs.map((gif) => {
+        {gifs.map((gif: any) => {
           return <Gif gif={gif} key={gif} />;
         })}
       </div>

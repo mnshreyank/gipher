@@ -5,11 +5,12 @@ import FilterGifs from "../components/FilterGifs";
 import Gif from "./Gif";
 
 const Search: React.FC<{}> = () => {
-  const [searchData, setSearchData] = useState([]);
+  const [searchData, setSearchData] = useState<any>([]);
   const { query } = useParams();
   const { gf, filters } = GifState();
 
   const fetchSearchResult = async () => {
+    // if (!query) return;
     const { data } = await gf.search(query, {
       sort: "relavant",
       limit: 20,
@@ -30,7 +31,7 @@ const Search: React.FC<{}> = () => {
       <FilterGifs />
       {searchData.length > 0 ? (
         <div className="columns-2 md:columns-3 lg:columns-4 gap-3 mt-4">
-          {searchData.map((s) => {
+          {searchData.map((s: any) => {
             return <Gif gif={s} key={s} />;
           })}
         </div>
