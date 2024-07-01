@@ -8,7 +8,7 @@ const Header = () => {
   const [categories, setCategories] = useState<any[]>([]);
   const [showCatergories, setshowCatergories] = useState<Boolean>(false);
 
-  const { gf, favorites } = GifState();
+  const { gf } = GifState();
 
   const fetchGifCategories = async () => {
     const { data } = await gf.categories();
@@ -57,13 +57,7 @@ const Header = () => {
               } lg:block`}
             />
           </button>
-          <div>
-            {favorites.length > 0 && (
-              <Link to="/favorites" className="rounded px-5 py-2 bg-gray-500">
-                Favorites
-              </Link>
-            )}
-          </div>
+
           <button className="lg:hidden text-sky-400">
             <HiMiniBars3BottomRight size={24} />
           </button>
